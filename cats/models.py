@@ -1,5 +1,13 @@
 from django.db import models
 
+CHOICES = (
+        ('Gray', 'Серый'),
+        ('Black', 'Чёрный'),
+        ('Белый', 'Белый'),
+        ('Ginger', 'Рыжий'),
+        ('Mixed', 'Смешанный'),
+    )
+
 class Achievement(models.Model):
     name = models.CharField(max_length=64)
 
@@ -25,6 +33,7 @@ class Cat(models.Model):
     owner = models.ForeignKey(
         Owner, related_name='cats', on_delete=models.CASCADE)
     achievements = models.ManyToManyField(Achievement, through='AchievementCat')
+    # created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name 
