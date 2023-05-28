@@ -1,4 +1,4 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -19,6 +19,13 @@ class LightCatViewSet(CreateRetrieveDeleteViewSet):
 class CatViewSet(viewsets.ModelViewSet):
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
+
+    # def destroy(self, request, *args, **kwargs):
+    #    instance = self.get_object()
+    #    instance.name = "Пушистик"
+    #    instance.save()
+    #    serializer = self.get_serializer(instance)
+    #    return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
 
     @action(detail=False, url_path='recent-white-cats')
     def recent_white_cats(self, request):

@@ -21,4 +21,7 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('', include('cats.urls')),
     path('admin/', admin.site.urls),
+    path('auth/', include('djoser.urls')),
+    # JWT-эндпоинты, для управления JWT-токенами:
+    path('auth/', include('djoser.urls.jwt')),
 ]
